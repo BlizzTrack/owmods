@@ -1,0 +1,143 @@
+<div class="flex-column my-3">
+    <form method="get">
+        <div class="md-form input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text text-white grey darken-4" style="border: none">
+                    <i class="fa fa-search"></i>
+                </span>
+            </div>
+            <input autocomplete="off" name="search" type="text" class="form-control text-white"
+                   placeholder="What do you wish to search for?"
+                   aria-describedby="MaterialButton-addon2">
+            <div class="input-group-append">
+                <select class="d-none d-md-block form-control" name="sort">
+                    <option value="1" {{ if eq $.sort "-posted"}}selected{{ end }}>Newest</option>
+                    <option value="2" {{ if eq $.sort "+posted"}}selected{{ end }}>Oldest</option>
+                    <option value="3" {{ if eq $.sort "-updated"}}selected{{ end }}>Updated</option>
+                </select>
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-md btn-dark m-0 px-3" type="submit" id="MaterialButton-addon2">
+                    Search
+                </button>
+            </div>
+            <div class="input-group-append">
+                <a class="btn btn-md btn-dark m-0 px-3" href="/random">
+                    <i class="fa fa-random"></i>
+                </a>
+            </div>
+        </div>
+    </form>
+    {{ if eq $.Total 0 }}
+        <div class="d-lg-block jumbotron jumbotron-fluid text-center py-2 transparent elegant-color lighten-1 text-white"
+             style="box-shadow: none;">
+            <div class="container">
+                <h1 class="display-4">
+                    <i class="fa fa-times"></i>
+                    No workshops Found
+                </h1>
+                <p class="lead">
+                    Please try a different search
+                </p>
+            </div>
+        </div>
+    {{ end }}
+    <div class="row game-rows">
+        {{ range $idx, $item := $.Workshops }}
+            {{ $author := index $.Authors $item.Author }}
+            <!-- Card -->
+            <div class="col-lg-4 col-sm-12 col-md-12 py-0 game-item">
+                <div class="card col-12 px-0 grey darken-4 text-white my-2 card-game">
+                    <div class="card-header text-center px-2">
+                        <h4 class="mb-0 text-truncate">
+                            <a href="/{{ $item.GetID }}" class="text-white text-truncate">
+                                {{ $item.Title }}
+                            </a>
+                        </h4>
+                    </div>
+
+                    <!-- Card image -->
+                    <div class="view overlay" style="
+                            border-radius: 0 !important;
+                    {{ if neq $item.Image "" }}
+                        background-image: url({{ $item.Image }});
+                                background-position: center;
+                    {{ end }}
+                            ">
+                        <div class="card-img-top code-background text-white card-game-code d-flex"
+                             style="border-radius: 0 !important; {{ if neq $item.Image "" }}height: 175px{{end }}">
+                            <h1 class="justify-content-center align-self-center text-center text-uppercase font-weight-bold"
+                                style="width: 100%">
+                                {{ $item.Code }}
+                            </h1>
+                        </div>
+                        <a href="#">
+                            <div class="mask waves-effect waves-light rgba-white-slight copy"
+                                 data-clippy="{{ $item.Code }}"></div>
+                        </a>
+                    </div>
+
+                    <!-- Card content -->
+                    <div class="card-body text-white">
+                        <!-- Text -->
+                        <div class="row mb-2">
+                            <h6 class=" col-sm text-primary" style="width: 100%;display: block !important;">
+                                <span class="text-muted">By,</span>
+                                <a href="/u/{{ if neq $author.URL "" }}{{$author.URL}}{{ else }}{{ $author.GetID }}{{ end }}">
+                                    {{ if neq $author.Name "" }}
+                                        {{ $author.Name }}
+                                    {{ else }}
+                                        {{ $author.GetNickNameNoTag }}
+                                    {{ end }}
+                                </a>
+                            </h6>
+                            <small class="col-sm d-inline text-right text-muted">
+                                <i class="fas fa-code-branch mr-1 pr-1  "></i>
+                                {{ if $item.Version }}
+                                    {{ $item.Version }}
+                                {{ else }}
+                                    N/A
+                                {{ end }}
+                            </small>
+                        </div>
+                        <p class="card-text text-white">
+                            {{ $item.TLDR }}
+                        </p>
+                    </div>
+
+                    <div class="card-footer px-0 py-0 btn-group btn-group-md card-buttons">
+                        <a href="/{{ $item.GetID }}" class="btn btn-dark waves-effect">
+                            View
+                        </a>
+                        {{ if $.User}}
+                            {{ if eq $item.Author $.User.BattleID }}
+                                <a href="/u/tools/update_workshop/{{ $item.ID.Hex }}" class="btn btn-dark waves-effect">
+                                    Edit
+                                </a>
+                            {{ end }}
+                        {{ end }}
+                    </div>
+
+                    <div class="card-footer text-muted row vdivide px-0 mx-0">
+                        <span class="{{ if $item.UpdatedUnix }}col-6 {{ else }} text-center col-12 {{ end }}moment-format"
+                              data-start="<i class='fa fa-plus'></i> "
+                              data-time="{{ $item.Unix }}">
+                            2 days ago
+                        </span>
+                        {{ if $item.UpdatedUnix }}
+                            <span class="col-6 moment-format text-right" data-start="<i class='fa fa-edit'></i> "
+                                  data-time="{{ $item.UpdatedUnix }}">
+                            2 days ago
+                        </span>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+        {{ end }}
+    </div>
+
+    <div class="container text-center text-white mt-3">
+        {{ .Pager.Render }}
+    </div>
+</div>

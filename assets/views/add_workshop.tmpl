@@ -1,0 +1,101 @@
+<div class="flex-column my-3">
+    <form method="post" id="add-game-form">
+        <div class="grey darken-4 px-2 py-1" style="border-radius: 1rem">
+            <div class="d-lg-flex">
+                <div class="md-form text-white mt-3 mb-1">
+                    <input type="text" id="workshopCode" name="code"
+                           class="form-control code-input" maxlength="10"
+                           value="{{ $.Workshop.Code}}">
+                    <label for="workshopCode">Workshop Sharing code</label>
+                </div>
+                <div class="md-form text-white mt-3 mb-1 mx-lg-3">
+                    <input type="text" id="workshopVersion" name="version"
+                           class="form-control" maxlength="15"
+                           value="{{ if $.Workshop.Version }}{{ $.Workshop.Version }}{{ else }}1.0.0{{ end }}">
+                    <label for="workshopVersion">Workshop Version</label>
+                </div>
+                <div class="md-form flex-grow-1 mx-lg-3 mt-3 mb-1" style="margin-right: 0 !important;">
+                    <input autocomplete="off" type="text" id="workshopTitle" name="title" class="form-control"
+                           maxlength="100"
+                           value="{{ $.Workshop.Title}}">
+                    <label for="workshopTitle">Workshop Title</label>
+                </div>
+            </div>
+            <div class="d-lg-flex">
+                <div class="md-form mt-3 flex-grow-1">
+                    <input autocomplete="off" type="text" id="workshopTLDR" name="tldr" class="form-control"
+                           maxlength="150"
+                           value="{{ $.Workshop.TLDR}}">
+                    <label for="workshopTLDR">Workshop Short Description</label>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text text-white grey darken-4" id="inputGroupFileAddon01">Workshop Thumbnail</span>
+                </div>
+                <div class="custom-file">
+                    <input name="image" type="file" class="custom-file-input text-white grey darken-4"
+                           id="inputGroupFile01"
+                           aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label text-white grey darken-4" for="inputGroupFile01">Choose file</label>
+                </div>
+                {{ if $.Workshop.Image }}
+                    <div class="input-group-append" style="height: calc(1.5em + .75rem + 2px)">
+                        <button data-mode="raw" data-type="image" data-code="{{ $.Workshop.ShortID }}"
+                                class="btn btn-danger deleteImage mx-0 my-0 py-0" type="button">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                {{ end }}
+            </div>
+
+            {{ if $.Workshop.Code }}
+                <div class="md-form col-lg-12 col-sm-12 col-md-12 px-0 mt-0 mb-3 text-white">
+                    <p>Workshop Changelog</p>
+                    <textarea class="form-control changeLog" name="change_log" rows="3" maxlength="1000"
+                              placeholder="What is your update about">{{ $.Changelog.Content }}</textarea>
+                </div>
+            {{ end }}
+
+            <div class="md-form col-lg-12 col-sm-12 col-md-12 px-0 mt-0 mb-0 text-white">
+                <p>Workshop Description</p>
+                <textarea class="form-control summernote" id="workshopDesc" name="desc"
+                          placeholder="What is your workshop actually about"
+                          rows="20">{{ $.Workshop.Description}}</textarea>
+            </div>
+
+            <div class="col-12 text-center mt-3">
+                <!-- Default inline 1-->
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="defaultInline1"
+                           name="privacy" value="0"
+                           {{ if eq $.Privacy "0" }}checked{{ end }}{{ if not $.Privacy }}checked{{ end }}>
+                    <label class="custom-control-label" for="defaultInline1">Public</label>
+                </div>
+
+                <!-- Default inline 2-->
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="defaultInline2"
+                           name="privacy" value="1" {{ if eq $.Privacy "1" }}checked{{ end }}>
+                    <label class="custom-control-label" for="defaultInline2">Private</label>
+                </div>
+
+                <!-- Default inline 3-->
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="defaultInline3"
+                           name="privacy" value="2" {{ if eq $.Privacy "2" }}checked{{ end }}>
+                    <label class="custom-control-label" for="defaultInline3">Unlisted</label>
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" name="mode" value="{{ if $.Mode }}{{ $.Mode }}{{ else }}new{{ end }}"/>
+        <button class="btn btn-outline-light col-12 mx-0 mt-3" type="submit">
+            {{ if $.Mode }}
+                Update Workshop
+            {{ else }}
+                Post Workshop
+            {{ end }}
+        </button>
+    </form>
+</div>

@@ -1,0 +1,380 @@
+:root {
+    --primary: #3fbf74;
+    --dark: #2e2e2e;
+    --white: #ffffff;
+}
+
+body, html {
+    height: 100%;
+}
+
+.transparent {
+    background: transparent !important;
+}
+
+.md-v-line {
+    position: absolute;
+    border-left: 1px solid rgba(0, 0, 0, .125);
+    height: 50px;
+    top: 0px;
+    left: 54px;
+}
+
+a {
+    color: var(--primary);
+}
+
+.navbar-dark {
+    background-color: var(--dark) !important;
+}
+
+input,
+.custom-control-label {
+    color: var(--white) !important;
+}
+
+nav .dropdown-item {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+/* list group rounded fix */
+.list-group .list-group-item:first-child {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.list-group .list-group-item:last-child {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.btn {
+    border-radius: 1rem;
+}
+
+/* Workshop detail page */
+.workshop-detail {
+    border-radius: 1rem;
+}
+
+.workshop-detail img {
+    max-width: 100%;
+    border-radius: 1rem;
+}
+
+.workshop-detail nav {
+    border-bottom: none;
+}
+
+.workshop-detail .nav-item.active {
+    background-color: #202124 !important;
+}
+
+.workshop-detail .tab-content {
+    border-radius: 1rem;
+}
+
+.workshop-detail .tab-content p,
+.workshop-detail .tab-content ul {
+    margin-bottom: 0;
+}
+
+
+.workshop-detail .tab-content iframe {
+    width: 100% !important;
+    height: 450px;
+    border-radius: 1rem;
+}
+
+.active-pink-textarea.md-form label.active {
+    color: #f48fb1;
+}
+
+.pink-textarea textarea.md-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+}
+
+.pink-textarea.md-form .prefix.active {
+    color: #f48fb1;
+}
+
+.active-pink-textarea.md-form textarea.md-textarea:focus:not([readonly]) + label {
+    color: #f48fb1;
+}
+
+.active-amber-textarea.md-form label.active {
+    color: #ffa000;
+}
+
+.amber-textarea textarea.md-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #ffa000;
+    box-shadow: 0 1px 0 0 #ffa000;
+}
+
+.amber-textarea.md-form .prefix.active {
+    color: #ffa000;
+}
+
+.active-amber-textarea.md-form textarea.md-textarea:focus:not([readonly]) + label {
+    color: #ffa000;
+}
+
+.active-pink-textarea-2 textarea.md-textarea {
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+}
+
+.active-pink-textarea-2.md-form label.active {
+    color: #f48fb1;
+}
+
+.active-pink-textarea-2.md-form label {
+    color: #f48fb1;
+}
+
+.active-pink-textarea-2.md-form .prefix {
+    color: #f48fb1;
+}
+
+.active-pink-textarea-2.md-form textarea.md-textarea:focus:not([readonly]) + label {
+    color: #f48fb1;
+}
+
+.active-amber-textarea-2 textarea.md-textarea {
+    border-bottom: 1px solid #ffa000;
+    box-shadow: 0 1px 0 0 #ffa000;
+}
+
+.active-amber-textarea-2.md-form label.active {
+    color: #ffa000;
+}
+
+.active-amber-textarea-2.md-form label {
+    color: #ffa000;
+}
+
+.active-amber-textarea-2.md-form .prefix {
+    color: #ffa000;
+}
+
+.active-amber-textarea-2.md-form textarea.md-textarea:focus:not([readonly]) + label {
+    color: #ffa000;
+}
+
+/* Labels
+ */
+
+.label {
+    color: white;
+}
+
+.trumbowyg-textarea {
+    color: white;
+}
+
+/* Form inputs */
+#data-form input,
+#data-form label {
+    color: white !important;
+}
+
+/* Input groups */
+.input-group-text {
+    border-radius: 1rem 0 0 1rem !important;
+}
+
+.code-input {
+    text-transform: uppercase;
+}
+
+/* Cards */
+
+.card-game-code {
+    height: 100px;
+}
+
+.card-game-code h1 {
+    margin-bottom: 0;
+    font-size: 45px;
+}
+
+.card-buttons a {
+    box-shadow: none;
+}
+
+/* SVGs */
+svg text {
+    text-transform: uppercase;
+    font-size: 3.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.card-game-code text {
+    font-size: 3rem !important;
+}
+
+/* buttons */
+.btn-group .btn {
+    border-radius: 1rem
+}
+
+/* Utils */
+/*
+.code-background {
+    background: #000428;
+    background: -webkit-linear-gradient(45deg, #002986, #010021, #002986);
+    background: linear-gradient(45deg, #002986, #010021, #002986);
+}
+*/
+
+.code-background {
+    border: solid 1px #212121;
+    background-color: rgba(0, 0, 0, 0.45);
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.9);
+}
+
+.code-background h1 {
+    color: #3fbf74;
+    text-shadow: var(--dark) 1px 0 4px;
+}
+
+/* Forms */
+.md-form.input-group .form-control {
+    border-top: solid 1px #212121;
+    border-bottom: solid 1px #212121;
+
+    transition: all 0.2s linear;
+}
+
+.trumbowyg-box {
+    margin-bottom: 5px;
+}
+
+/* Pagnation */
+.pagination .page-item .page-link {
+    color: white;
+}
+
+.pagination .page-item:not(.active) .page-link:hover {
+    color: black;
+}
+
+/* Column stuff */
+.row.vdivide [class*='col-']:not(:last-child):after {
+    background: #6c757d !important;
+    width: 1px;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    min-height: 10px;
+}
+
+.trumbowyg-box {
+    margin-top: 7px;
+}
+
+.trumbowyg-box,
+.trumbowyg-editor {
+    min-height: 100px;
+}
+
+.trumbowyg-box.trumbowyg-editor-hidden .trumbowyg-textarea {
+    color: white;
+}
+
+.trumbowyg-editor iframe {
+    width: 100%;
+    height: 450px;
+    border-radius: 1rem;
+}
+
+.trumbowyg-editor img {
+    border-radius: 1rem;
+}
+
+
+.md-form p {
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.mask {
+    border-radius: 1rem;
+}
+
+.game-rows .mask {
+    border-radius: 0 !important;
+}
+
+.game-rows .waves-effect {
+    border-radius: 0 !important;
+}
+
+.input-group-append select.form-control {
+    border-left: solid 1px #212121;
+    color: white;
+}
+
+.input-group-append select.form-control option {
+    color: black;
+}
+
+.workshop-tools .dropdown-menu {
+    min-width: 100% !important;
+}
+
+.dropdown-menu {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.dropdown-menu.show {
+    display: block;
+    border: 2px solid;
+}
+
+.dropdown-menu {
+    position: absolute;
+    will-change: transform;
+    background: rgb(51, 51, 51);
+    color: white;
+    top: 0;
+    left: 0;
+    transform: translate3d(0px, 45px, 0px);
+}
+
+.dropdown-menu a {
+    color: white !important;
+    border-top: none !important;
+}
+
+.workshop-tools button[aria-expanded="true"] {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #007bff !important;
+}
+
+.media .user-image {
+    width: 64px;
+    height: 64px;
+}
+
+@media only screen and (max-width: 768px) {
+    .text-sm-center {
+        text-align: center;
+    }
+
+    .mt-sm-3 {
+        margin-top: 1rem !important;
+    }
+}

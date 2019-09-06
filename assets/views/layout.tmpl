@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Header.Title }}</title>
+    <meta name="tags"
+          content="blizzard, overwatch, world of warcraft, version tracker, wow, ow, diablo 3, starcraft 2, public test realm, ptr, hearthstone, heros of the storm, starcraft, starcraft ii"/>
+    <meta name="robots" content="index, follow"/>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=5" name="viewport">
+
+    <meta name="description" content="{{.Header.Desc}}"/>
+    <meta name="og:description" content="{{.Header.Desc}}"/>
+    <meta name="og:title" content="{{.Header.Title}}"/>
+    <meta name="og:site_name" content="{{.Header.SiteName}}"/>
+    <meta name="theme-color" content="#3fbf74">
+
+    <meta name="og:url" content="https://owmods.com"/>
+    {{ if $.UserImage }}
+        <meta name="og:image" content="{{ $.UserImage }}"/>
+    {{ else }}
+        <meta name="og:image" content="https://owmods.com/static/images/{{.Header.Logo}}.png"/>
+    {{ end }}
+
+    {{ if $.UseLargeImage }}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="og:type" content="photo"/>
+    {{ else }}
+        <meta name="og:type" content="website"/>
+    {{ end }}
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+          integrity="sha256-ENFZrbVzylNbgnXx0n3I1g//2WeO47XxoPe0vkp3NC8=" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.18.0/ui/trumbowyg.min.css"
+          integrity="sha256-X5UWaGp+SiusJ9TA2ShymJz5VPE+oTl88TNI47fqOTs=" crossorigin="anonymous"/>
+
+    <link href="/static/css/design.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86267615-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-86267615-1');
+    </script>
+    <script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+
+    <script>
+        var slot1 = undefined, slot2 = undefined;
+        googletag.cmd.push(function () {
+            var mappingcontentad1 = googletag.sizeMapping().addSize([992, 0], [[728, 90], [336, 280], [300, 250], [1, 1]]).//desktop
+            addSize([768, 0], [[728, 90], [336, 280], [300, 250], [1, 1]]).//tablet
+            addSize([320, 0], [[320, 50], [320, 100], [320, 200], [300, 250], [1, 1]]).//mobile
+            addSize([0, 0], [[300, 250], [1, 1]]).//other
+            build();
+
+            slot1 = googletag.defineSlot('/27606634/bd-ad', [[728, 90], [320, 50]], 'div-gpt-ad-1507329467536-0').defineSizeMapping(mappingcontentad1).addService(googletag.pubads());
+            slot2 = googletag.defineSlot('/27606634/bd-ad-bottom', [[728, 90], [320, 50]], 'div-gpt-ad-1507329467536-1').defineSizeMapping(mappingcontentad1).addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+            setInterval(function () {
+                googletag.pubads().refresh([slot1, slot2]);
+            }, 60000);
+        });
+    </script>
+</head>
+<body class="elegant-color lighten-1">
+<div style="position: fixed; z-index: -99; width: 100%; height: 100%">
+    <iframe frameborder="0" height="100%" width="100%"
+            style="pointer-events: none; display: none;"
+            class="egg"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
+    </iframe>
+</div>
+
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/static/svgs/logo.svg" height="30" alt="OWMods">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+                aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {{ if eq $.A_Page ""}}active{{end }}">
+                    <a class="nav-link" href="/">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://discord.gg/ac2HKXx" target="_blank">
+                        Our Discord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.patreon.com/BlizzTrack" target="_blank">
+                        Our Patreon
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="/random">
+                        <i class="fa fa-random"></i>
+                        <span class="d-lg-none"> Random</span>
+                    </a>
+                </li>
+
+                {{ if $.User }}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/u/tools/add_workshop">
+                            Add Workshop
+                        </a>
+                    </li>
+
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            {{ if neq $.User.Name "" }}
+                                {{ $.User.Name }}
+                            {{ else }}
+                                {{ $.User.NickName }}
+                            {{ end }}
+                        </a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item"
+                               href="/u/{{ if neq $.User.URL "" }}{{$.User.URL}}{{ else }}{{$.User.GetID}}{{ end }}">
+                                My Workshops
+                            </a>
+                            <a class="dropdown-item"
+                               href="/u/settings">
+                                <i class="fas fa-tools mr-1"></i>
+                                Account Settings
+                            </a>
+                            <a class="dropdown-item" href="/auth/leave">
+                                <i class="fas fa-sign-out-alt mr-1"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                {{ else }}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/start">
+                            Battle.net Login
+                        </a>
+                    </li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--/.Navbar -->
+<div class="container flex-grow-1">
+    {{ yield }}
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small transparent">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 transparent">© 2019 Copyright
+        <a href="https://blizztrack.com/"> BlizzTrack.com</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/js/mdb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+        integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"
+        integrity="sha256-4F7e4JsAJyLUdpP7Q8Sah866jCOhv72zU5E8lIRER4w=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha256-3blsJd4Hli/7wCQ+bmgXfOdK7p/ZUMtPXY08jmxSSgk=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.18.0/trumbowyg.min.js"
+        integrity="sha256-9fPnxiyJ+MnhUKSPthB3qEIkImjaWGEJpEOk2bsoXPE=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.18.0/plugins/pasteembed/trumbowyg.pasteembed.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.18.0/plugins/pasteimage/trumbowyg.pasteimage.min.js"
+        integrity="sha256-6La7Z/CoY/8EiWi0TBIKHUcxxvC90ZUs06u4WtUTwsg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"
+        integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
+        integrity="sha256-HfH85PYPD7XPxN3MmppGXnxsLZUrlu0dN/Kn4H7DA4E=" crossorigin="anonymous"></script>
+<script src="/static/js/bootstrap-maxlength.js"></script>
+<script src="/static/js/core.js"></script>
+
+<script src="/static/js/ads.js"></script>
+<script type="text/javascript">
+    if (!document.getElementById('BUDGKurwAhJe')) {
+        document.getElementById('warning').style.display = 'block';
+        gtag('event', 'ads_blocked');
+    }
+</script>
+</body>
+</html>

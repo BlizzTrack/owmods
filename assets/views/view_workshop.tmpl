@@ -1,0 +1,204 @@
+<div class="flex-column my-3">
+    <div class="row">
+        <div class="col-lg-9 col-sm-12 text-sm-center text-lg-left text-md-left  jumbotron jumbotron-fluid py-2 transparent elegant-color lighten-1 text-white"
+             style="box-shadow: none;">
+            <div class="container">
+                <h1 class="display-5 mt-4 mb-0">{{ $.Workshop.Title }}</h1>
+                <!--
+                <p class="lead">
+                    {{ $.Workshop.TLDR }}
+                </p>
+                -->
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="view overlay" style="border-radius: 1rem !important">
+                <div class="code-background text-primary card-game-code d-flex"
+                     style="border-radius: 1rem !important;">
+                    <h1 class="justify-content-center align-self-center text-center text-uppercase font-weight-bold"
+                        style="width: 100%">
+                        {{ $.Workshop.Code }}
+                    </h1>
+                </div>
+                <a href="#">
+                    <div class="mask waves-effect waves-light rgba-white-slight copy"
+                         data-clippy="{{ $.Workshop.Code }}"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-12 col-md-12 text-center mt-sm-3 mb-3">
+            {{ if neq $.Workshop.Image "" }}
+                <div class="grey darken-4 py-1 px-1 mb-2" style="border-radius: 1rem;">
+                    <img src="{{ $.Workshop.Image }}" style="width: 100%; border-radius: 1rem;"/>
+                </div>
+            {{ end }}
+            <div class="list-group grey darken-4 text-white text-left" style="border-radius: 1rem;">
+                <a class="list-group-item grey darken-4 text-white waves-effect waves-light rgba-white-slight"
+                   href="/u/{{ if neq $.Author.URL "" }}{{$.Author.URL}}{{ else }}{{ $.Author.GetID }}{{ end }}">
+                    <div class="md-v-line"></div>
+                    <i class="fas fa-user mr-4 pr-3"></i>
+                    {{ if neq $.Author.Name "" }}
+                        {{ $.Author.Name }}
+                    {{ else }}
+                        {{ $.Author.GetNickNameNoTag }}
+                    {{ end }}
+                </a>
+
+                <a href="#like" class="list-group-item grey darken-4 text-white like-workshop waves-effect waves-light rgba-white-slight">
+                    <div class="md-v-line"></div>
+                    <i class="fas fa-thumbs-up mr-4 pr-3"></i>
+                    <span class="like-count">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </span>
+                </a>
+
+                <div class="list-group-item grey darken-4 text-white">
+                    <div class="md-v-line"></div>
+                    <i class="fas fa-eye mr-4 pr-2"></i>
+                    {{ if eq $.Workshop.Privacy 0 }}
+                        Public
+                    {{ end }}
+                    {{ if eq $.Workshop.Privacy 1 }}
+                        Private
+                    {{ end }}
+                    {{ if eq $.Workshop.Privacy 2 }}
+                        Unlisted
+                    {{ end }}
+                </div>
+
+                <div class="list-group-item grey darken-4 text-white">
+                    <div class="md-v-line"></div>
+                    <i class="fas fa-code-branch mr-4 pr-3"></i>
+                    {{ if $.Workshop.Version }}
+                        {{ $.Workshop.Version }}
+                    {{ else }}
+                        N/A
+                    {{ end }}
+                </div>
+
+                <div class="list-group-item grey darken-4 text-white">
+                    <div class="md-v-line"></div>
+                    <i class="fas fa-plus mr-4 pr-3"></i>
+                    <span class="moment-format" data-start=" " data-time="{{ $.Workshop.Unix }}">
+                        {{ $.Workshop.Unix }}
+                    </span>
+                </div>
+
+                {{ if $.Workshop.UpdatedUnix }}
+                    <div class="list-group-item grey darken-4 text-white">
+                        <div class="md-v-line"></div>
+                        <i class="fas fa-edit mr-4 pr-3"></i>
+                        <span class="moment-format" data-start=" " data-time="{{ $.Workshop.UpdatedUnix }}">
+                            {{ $.Workshop.UpdatedUnix }}
+                        </span>
+                    </div>
+                {{ end }}
+            </div>
+
+            {{ if $.ICreated }}
+                <div class="mt-2 btn-group btn-group-sm btn-game-tools mt-3" style="width: 100%;">
+                    <a href="/u/tools/update_workshop/{{ $.Workshop.GetID }}" class="btn btn-primary btn-block">
+                        Edit
+                    </a>
+
+                    <button data-href="/u/tools/nuke_workshop/{{ $.Workshop.GetID}}" data-code="{{ $.Workshop.ID.Hex}}"
+                            class="btn btn-danger btn-block btn-nuke-workshop">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            {{ end }}
+        </div>
+
+        <div class="col-lg-9 col-sm-12 col-md-12 text-white workshop-detail">
+            <nav class="nav nav-tabs transparent nav-justified">
+                <div class="btn-group btn-group-sm mb-1 mt-2 d-none d-md-flex" id="nav-tab" role="tablist"
+                     style="width: 100%">
+                    <a class="nav-item btn btn-outline-light active" id="nav-detail-tab" data-toggle="tab"
+                       href="#nav-detail"
+                       role="tab" aria-controls="nav-detail" aria-selected="true">Detail</a>
+                    {{ if $.ChangeLog }}
+                        <a class="nav-item btn btn-outline-light" id="nav-change-log-tab" data-toggle="tab"
+                           href="#nav-change-log"
+                           role="tab" aria-controls="nav-change-log" aria-selected="true">ChangeLog</a>
+                    {{ end }}
+                    <a class="nav-item btn btn-outline-light " id="nav-comments-tab" data-toggle="tab"
+                       href="#nav-comments" role="tab"
+                       aria-controls="nav-comments" aria-selected="false">Comments</a>
+                </div>
+
+                <div class="d-md-none workshop-tools" style="width: 100%">
+                    <div class="dropdown">
+                        <button class="btn btn-block btn-outline-light dropdown-toggle" type="button"
+                                id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Detail
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item hover-me active" id="nav-detail-tab" data-toggle="tab"
+                               href="#nav-detail" role="tab" aria-controls="nav-detail">Detail</a>
+                            {{ if $.ChangeLog }}
+                                <a class="dropdown-item" id="nav-change-log-tab" data-toggle="tab"
+                                   href="#nav-change-log">Change Log</a>
+                            {{ end }}
+                            <a class="dropdown-item" id="nav-comments-tab" data-toggle="tab"
+                               href="#nav-comments" role="tab"
+                               aria-controls="nav-comments" aria-selected="false">Comments</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="tab-content py-2 grey darken-4 mt-2 px-2" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-detail" role="tabpanel" aria-labelledby="nav-detail-tab">
+                    {{ raw $.Workshop.Description }}
+                </div>
+                {{ if $.ChangeLog }}
+                    <div class="tab-pane fade" id="nav-change-log" role="tabpanel"
+                         aria-labelledby="nav-change-log-tab">
+                        {{ range $idx, $item := $.ChangeLog }}
+                            {{ if neq $item.Content "" }}
+                                <div class="media col-sm-12 {{ if eq $idx 0 }}mt-3{{ end }}     mb-3 grey darken-4 py-2"
+                                     style="border-radius: 0.75rem; border:2px solid #e0e0e0!important">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 comment-title">
+                                            {{ if eq $idx 0 }}
+                                                <strong>
+                                                    Latest
+                                                </strong>
+                                            {{ end }}
+                                            <small style="font-size: 14px" class="text-muted moment-format"
+                                                   data-start="Posted " data-time="{{ $item.Unix }}">
+                                                {{ $item.Posted.String }}
+                                            </small>
+                                        </h5>
+                                        {{ raw $item.Content }}
+                                    </div>
+                                </div>
+                            {{ end }}
+                        {{ end }}
+                    </div>
+                {{ end }}
+                <div class="tab-pane fade" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
+                    <form class="{{ if $.User}}allowed{{ end }} container" method="post" id="comment-form"
+                          style="display: none; margin-bottom: 25px;">
+                        <div class="md-form mb-4 mt-1 amber-textarea active-amber-textarea text-white">
+                            <i class="fas fa-angle-double-right prefix"></i>
+                            <textarea name="comment" id="commentBody" class="md-textarea form-control text-white"
+                                      rows="1" maxlength="250"></textarea>
+                            <label for="commentBody">What is your comment about?</label>
+                        </div>
+
+                    </form>
+                    <div class="container comment-loader text-center mb-3 mt-3">
+                        <i class="fa fa-spinner fa-spin fa-4x"></i>
+                        <Br/>
+                        <small class="text-muted" style="margin-top: 5px;">Loading comments please wait</small>
+                    </div>
+                    <div class="container comment-list" style="display: none"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

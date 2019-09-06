@@ -1,0 +1,29 @@
+{{ range $idx, $comment := $.Comments }}
+    {{ $author := index $.Authors $comment.Author }}
+    <div class="media col-sm-12 mb-3 grey darken-4 py-2"
+         style="border-radius: 0.75rem; border:2px solid #e0e0e0!important">
+        {{ if neq $author.Image "" }}
+            <img class="mr-3 user-image" src="{{ $author.Image }}">
+        {{ else }}
+            <img class="mr-3 user-image" src="/u/{{ if neq $author.URL "" }}{{$author.URL}}{{ else }}{{$author.GetID}}{{ end }}/icon">
+        {{ end }}
+        <div class="media-body">
+            <h5 class="mt-0 comment-title">
+                <a href="/u/{{ if neq $author.URL "" }}{{$author.URL}}{{ else }}{{$author.GetID}}{{ end }}">
+                    <i class="fas fa-angle-double-right prefix text-white"></i>
+                    <strong>
+                        {{ if neq $author.Name "" }}
+                            {{ $author.Name }}
+                        {{ else }}
+                            {{ $author.GetNickNameNoTag }}
+                        {{ end}}
+                    </strong></a>&nbsp;
+                <small style="font-size: 14px" class="text-muted moment-format" data-start="Commented "
+                       data-time="{{ $comment.Unix }}">
+                    {{ $comment.Posted.String }}
+                </small>
+            </h5>
+            {{ $comment.Comment }}
+        </div>
+    </div>
+{{ end }}

@@ -1,0 +1,45 @@
+<div class="flex-column my-3">
+    <form method="post" id="add-game-form">
+        <div class="grey darken-4 px-2 py-1" style="border-radius: 1rem">
+            <div class="d-lg-flex mb-2 mt-1">
+                <div class="md-form col-lg-6 col-sm-12 col-md-12 pl-0">
+                    <input type="text" id="profileURL" name="url"
+                           class="form-control" maxlength="20"
+                           value="{{ $.User.URL}}">
+                    <label for="profileURL">Custom Profile URL</label>
+                </div>
+                <div class="md-form col-lg-6 col-sm-12 col-md-12 pl-0 pr-0" style="margin-right: 0 !important;">
+                    <input autocomplete="off" type="text" id="userName" name="name" class="form-control"
+                           maxlength="20"
+                           value="{{ $.User.Name}}">
+                    <label for="userName">Custom User Name</label>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text text-white grey darken-4"
+                          id="inputGroupFileAddon01">Avatar Picture</span>
+                </div>
+                <div class="custom-file">
+                    <input name="image" type="file" class="custom-file-input text-white grey darken-4"
+                           id="inputGroupFile01"
+                           aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label text-white grey darken-4" for="inputGroupFile01">Choose file</label>
+                </div>
+                {{ if $.User.Image }}
+                    <div class="input-group-append" style="height: calc(1.5em + .75rem + 2px)">
+                        <button data-mode="raw" data-type="image" data-code="{{ $.User.ShortID }}"
+                                class="btn btn-danger deleteImage mx-0 my-0 py-0" type="button">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                {{ end }}
+            </div>
+
+        </div>
+
+        <button class="btn btn-outline-light col-12 mx-0 mt-3" type="submit">
+            Update Account Settings
+        </button>
+    </form>
+</div>
