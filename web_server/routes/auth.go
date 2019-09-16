@@ -3,9 +3,9 @@ package routes
 import (
 	"errors"
 	"fmt"
+	"github.com/blizztrack/owmods/core/goth/battlenet"
 	"github.com/kataras/iris"
 	"github.com/markbates/goth"
-	"github.com/markbates/goth/providers/battlenet"
 	"github.com/blizztrack/owmods/database"
 	"github.com/blizztrack/owmods/system"
 	"gopkg.in/alecthomas/kingpin.v2"
