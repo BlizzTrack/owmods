@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	authURL      string = "https://proxy.blizztrack.com/oauth/authorize"
+	authURL      string = "https://us.battle.net/oauth/authorize"
 	tokenURL     string = "https://proxy.blizztrack.com/oauth/token"
 	endpointUser string = "https://proxy.blizztrack.com/oauth/userinfo"
 )
