@@ -58,24 +58,6 @@
         googletag.cmd = googletag.cmd || [];
     </script>
 
-    <script>
-        var slot1 = undefined, slot2 = undefined;
-        googletag.cmd.push(function () {
-            var mappingcontentad1 = googletag.sizeMapping().addSize([992, 0], [[728, 90], [336, 280], [300, 250], [1, 1]]).//desktop
-            addSize([768, 0], [[728, 90], [336, 280], [300, 250], [1, 1]]).//tablet
-            addSize([320, 0], [[320, 50], [320, 100], [320, 200], [300, 250], [1, 1]]).//mobile
-            addSize([0, 0], [[300, 250], [1, 1]]).//other
-            build();
-
-            slot1 = googletag.defineSlot('/27606634/bd-ad', [[728, 90], [320, 50]], 'div-gpt-ad-1507329467536-0').defineSizeMapping(mappingcontentad1).addService(googletag.pubads());
-            slot2 = googletag.defineSlot('/27606634/bd-ad-bottom', [[728, 90], [320, 50]], 'div-gpt-ad-1507329467536-1').defineSizeMapping(mappingcontentad1).addService(googletag.pubads());
-            googletag.pubads().enableSingleRequest();
-            googletag.enableServices();
-            setInterval(function () {
-                googletag.pubads().refresh([slot1, slot2]);
-            }, 60000);
-        });
-    </script>
 </head>
 <body class="elegant-color lighten-1">
 <div style="position: fixed; z-index: -99; width: 100%; height: 100%">
